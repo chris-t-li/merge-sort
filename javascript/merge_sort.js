@@ -1,9 +1,28 @@
 function merge(arr1, arr2) {
-  // type your code here
+  const result = [];
+  while (arr1.length > 0 || arr2.length > 0) {
+    if (arr1.length === 0 || arr1[0] > arr2[0]) {
+      result.push(arr2.shift())
+    } else if (arr2.length === 0 || arr1[0] <= arr2[0]) {
+      result.push(arr1.shift())
+    }
+  }
+  return result;
 }
 
 function mergeSort(arr) {
-  // type your code here
+  if (arr.length <= 1) {
+    return arr;
+  }
+  // while(arr.length > 1) {
+  const middleIndex = Math.floor(arr.length / 2);
+  let left = arr.slice(0, middleIndex);
+  let right = arr.slice(middleIndex);
+  // }
+  left = mergeSort(left)
+  right = mergeSort(right)
+
+  return merge(left, right)
 }
 
 if (require.main === module) {
